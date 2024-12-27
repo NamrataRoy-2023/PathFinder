@@ -7,11 +7,25 @@ import { SelectTravelsList } from '@/constants/options';
 import { Button } from '@/Components/ui/button';
 import { toast } from "sonner"
 import { chatSession } from '@/service/AIModel';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from '@react-oauth/google';
+
+
+
 
 function CreateTrip() {
   const [place,setPlace]=useState();
 
   const [formData,setFormData] = useState([]);
+  const [openDailog,setOpenDailog] = useState(false);
 
   const handleInputChange = (name,value)=>{
     setFormData({
@@ -24,7 +38,18 @@ function CreateTrip() {
     console.log(formData);
   },[formData])
 
+  const login=useGoogleLogin({
+    onSuccess:(codeResp)=>console.log(codeResp),
+    onError:(error)=>console.log(error)
+  })
+
   const onGenerateTrip=async()=>{
+    const user=localStorage.getItem('user');
+    if(!user){
+      setOpenDailog(true);
+      return;
+    }
+
     if(formData?.noOfDays>10 &&! formData?.location||!formData?.budget||!formData?.traveller){
       toast("Please Fill all Details.")
       return;
@@ -125,6 +150,26 @@ function CreateTrip() {
       <div className='my-10 justify-end flex'>
       <Button onClick={onGenerateTrip}>Generate Trip</Button>
       </div>
+
+      <Dialog open={openDailog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogDescription>
+              <img src="/logo.svg" />
+              <h2 className='font-bold text-lg mt-7'>Sign In With Google</h2>
+              <p>Sign in to the App with Google Authentication Securely.</p>
+
+              <Button
+              onClick={login}
+              className='w-full mt-5 flex gap-4 items-center'>
+                <FcGoogle className='w-8 h-8'/>
+                Sign In with Google
+              </Button>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
 
     </div>
   )
