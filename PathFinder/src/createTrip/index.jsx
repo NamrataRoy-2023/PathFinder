@@ -20,7 +20,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/service/firebaseConfig";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-
+import axios from 'axios';
 
 
 
@@ -84,7 +84,7 @@ function CreateTrip() {
     // Add a new document in collection "cities"
     await setDoc(doc(db, "AITrips", docId), {
       userSelection:formData,
-      tripData:TripData,
+      tripData:JSON.parse(TripData),
       userEmail:user?.email,
       id:docId
     });
