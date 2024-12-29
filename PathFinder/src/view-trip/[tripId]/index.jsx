@@ -1,11 +1,12 @@
 import { db } from '@/service/firebaseConfig';
-import { doc } from 'firebase/firestore';
-import React, { useEffect } from 'react'
+import { doc, getDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner';
 
 function Viewtrip() {
     const {tripId}=useParams();
+    const [trip, setTrip] = useState([]);
 
     useEffect(()=>{
         tripId && GetTripData();
@@ -17,6 +18,7 @@ function Viewtrip() {
 
         if(docSnap.exists()){
             console.log("Document:",docSnap.data());
+            setTrip(docSnap.data());
         }
         else{
             console.log("No such document!");
