@@ -1,8 +1,24 @@
 import { Button } from '@/Components/ui/button'
-import React from 'react'
+import { GetPlaceDetails } from '@/service/GlobalApi';
+import React, { useEffect } from 'react'
 import { FcShare } from "react-icons/fc";
 
 function InfoSection({trip}) {
+
+    useEffect(()=>{
+        trip && GetPlacePhoto();
+    },[trip])
+
+    const GetPlacePhoto=async()=>{
+        const data={
+            textQuery:trip.userSelection?.location?.label +'image'
+        }
+        const result=await GetPlaceDetails(data).then(resp=>{
+            console.log(resp.data.places[0].photos[3].name)
+        })
+    }
+
+
   return (
     <div>
         <img src="/placeholder-image.jpg" alt="" className='h-[340px] w-full object-cover rounded-xl'/>
@@ -32,4 +48,4 @@ function InfoSection({trip}) {
   )
 }
 
-export default InfoSection
+export default InfoSection;
