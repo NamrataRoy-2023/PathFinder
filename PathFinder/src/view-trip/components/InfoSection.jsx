@@ -1,10 +1,10 @@
 import { Button } from '@/Components/ui/button'
-import { GetPlaceDetails } from '@/service/GlobalApi';
+import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
 import React, { useEffect, useState } from 'react'
 import { FcShare } from "react-icons/fc";
 
 
-const PHOTO_REF_URL='https://places.googleapis.com/v1/{NAME}/media?maxHeightPx=1000&maxWidthPx=1000&key='+import.meta.env.VITE_GOOGLE_PLACE_API_KEY
+
 
 function InfoSection({trip}) {
 
