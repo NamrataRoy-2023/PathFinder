@@ -29,7 +29,7 @@ function InfoSection({trip}) {
 
   return (
     <div>
-        <img src={photoUrl} alt="" className='h-[340px] w-full object-cover rounded-xl'/>
+        <img src={photoUrl?photoUrl:'/placeholder-image.jpg'} alt="" className='h-[340px] w-full object-cover rounded-xl'/>
 
         <div className='flex justify-between items-center'>
             <div className='my-5 flex flex-col gap-2'>
