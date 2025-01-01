@@ -1,9 +1,14 @@
 import { Button } from '@/Components/ui/button'
 import { GetPlaceDetails } from '@/service/GlobalApi';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FcShare } from "react-icons/fc";
 
+
+const PHOTO_REF_URL='https://places.googleapis.com/v1/{NAME}/media?maxHeightPx=1000&maxWidthPx=1000&key='+import.meta.env.VITE_GOOGLE_PLACE_API_KEY
+
 function InfoSection({trip}) {
+
+    const [photoUrl,setPhotoUrl]=useState();
 
     useEffect(()=>{
         trip && GetPlacePhoto();
@@ -11,17 +16,20 @@ function InfoSection({trip}) {
 
     const GetPlacePhoto=async()=>{
         const data={
-            textQuery:trip.userSelection?.location?.label +'image'
+            textQuery:'view of'+trip.userSelection?.location?.label
         }
         const result=await GetPlaceDetails(data).then(resp=>{
-            console.log(resp.data.places[0].photos[3].name)
+            console.log(resp.data.places[0].photos[3].name);
+
+            const PhotoUrl=PHOTO_REF_URL.replace('{NAME}',resp.data.places[0].photos[3].name);
+            setPhotoUrl(PhotoUrl)
         })
     }
 
 
   return (
     <div>
-        <img src="/placeholder-image.jpg" alt="" className='h-[340px] w-full object-cover rounded-xl'/>
+        <img src={photoUrl} alt="" className='h-[340px] w-full object-cover rounded-xl'/>
 
         <div className='flex justify-between items-center'>
             <div className='my-5 flex flex-col gap-2'>
