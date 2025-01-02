@@ -16,7 +16,7 @@ function InfoSection({trip}) {
 
     const GetPlacePhoto=async()=>{
         const data={
-            textQuery:'view of'+trip.userSelection?.location?.label
+            textQuery:'view of '+trip.userSelection?.location?.label
         }
         const result=await GetPlaceDetails(data).then(resp=>{
             console.log(resp.data.places[0].photos[3].name);
