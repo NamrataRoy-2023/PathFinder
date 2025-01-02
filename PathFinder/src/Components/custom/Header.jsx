@@ -56,8 +56,9 @@ function Header() {
       <div>
         {user?
           <div className='flex items-center gap-3'>
-            <Button variant="outline" className='rounded-full'>My Trips</Button>
-
+            <a href="/my-trips">
+              <Button variant="outline" className='rounded-full'>My Trips</Button>
+            </a>
             <Popover>
               <PopoverTrigger className='rounded-full bg-transparent'>
               <img src={user?.picture} alt="" className='h-[35px] w-[35px] rounded-full'/>
