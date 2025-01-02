@@ -25,7 +25,7 @@ function UserTripCardItem({trip}) {
   return (
     <Link to={'/view-trip/'+trip?.id}>
         <div className='hover:scale-105 transition-all'>
-            <img src={photoUrl?photoUrl:"/placeholder-image.jpg"} alt="" className='object-cover rounded-xl h-[180px] w-full'/>
+            <img src={photoUrl?photoUrl:"/placeholder-image.jpg"} alt="" className='object-cover rounded-xl h-[220px] w-full'/>
             <div>
                 <h2 className='font-bold text-lg'>
                     {trip?.userSelection?.location?.label}
