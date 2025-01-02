@@ -20,11 +20,17 @@ function PlacesToVisit({trip}) {
               Best Time To Visit : {item?.bestTime}
             </h2>
             <div className='grid md:grid-cols-2 gap-5'>
-              {item.plan.map((place,index)=>(
+              {item.plan?.length>0? item.plan.map((place,index)=>(
                 <div className=''>
-                  <PlaceCardItem place={place}/>
+                  <PlaceCardItem place={place} key={index}/>
                 </div>
-              ))}
+              ))
+              :[1,2,3,4,5,6].map((item,index)=>(
+                <div key={index} className='h-[220px] w-full bg-slate-200 animate-pulse rounded-xl'>
+    
+                </div>
+            ))
+              }
             </div>
           </div>
 
