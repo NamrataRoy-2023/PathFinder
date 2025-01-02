@@ -51,8 +51,8 @@ function Header() {
 
 
   return (
-    <div className='p-0 shadow-sm flex justify-between items-center px-5'>
-      <img src="/logopng.png" alt="" className='h-[80px] w-[180px] m-0 p-0' />
+    <div className='p-1 shadow-sm flex justify-between items-center px-5'>
+      <img src="/logopng.png" alt="" className='h-[80px] w-[180px]' />
       <div>
         {user?
           <div className='flex items-center gap-3'>
