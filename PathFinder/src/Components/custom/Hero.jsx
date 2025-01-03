@@ -1,6 +1,14 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { Link } from 'react-router-dom'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
 
 function Hero() {
   return (
@@ -12,6 +20,18 @@ function Hero() {
       <Link to={'/createTrip'}>
       <Button>Get Started, It's Free</Button>
       </Link>
+
+      <Carousel className='pt-5'>
+        <CarouselContent className='-mt-20 mb-20'>
+          <CarouselItem><img src="/c1.png" alt="" /></CarouselItem>
+          <CarouselItem><img src="/c2.png" alt="" /></CarouselItem>
+          <CarouselItem><img src="/c0.png" alt="" /></CarouselItem>
+          <CarouselItem><img src="/c3.png" alt="" /></CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
     </div>
   )
 }
